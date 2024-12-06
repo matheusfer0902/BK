@@ -1,18 +1,17 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { Container, Filters, UploadButton } from "./style";
 import SearchFilter from "@/app/components/shared/searchFilter";
 import UploadSidebar from "./UploadSidebar";
 
 const FilterBar = () => {
-  const router = useRouter();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleUploadClick = () => {
-    router.push("/media?upload=true", undefined, { shallow: true });
+    setIsSidebarOpen(true);
   };
 
   const handleCloseSidebar = () => {
-    router.push("/media", undefined, { shallow: true });
+    setIsSidebarOpen(false);
   };
 
   return (
@@ -25,7 +24,7 @@ const FilterBar = () => {
         </Filters>
         <UploadButton onClick={handleUploadClick}>+ Upload Media</UploadButton>
       </div>
-      {router.query.upload === "true" && <UploadSidebar onClose={handleCloseSidebar} />}
+      {isSidebarOpen && <UploadSidebar onClose={handleCloseSidebar} />}
     </Container>
   );
 };
