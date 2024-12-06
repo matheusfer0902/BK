@@ -1,36 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #141414;
-  color: #fff;
-  padding: 1rem;
+  color: #D4D4D8;
+  padding: 14px;
   border-radius: 8px;
-`;
-
-export const CategoryButton = styled.button`
-  background: #444;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background: #555;
-  }
-`;
-
-export const UploadButton = styled.button`
-  background: #1db954;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background: #17a44f;
-  }
 `;
 
 export const Table = styled.table`
@@ -39,7 +12,9 @@ export const Table = styled.table`
   margin-bottom: 1rem;
 
   thead {
-    background: #222;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+    border-top: 2px solid #333;
   }
 
   th, td {
@@ -62,6 +37,8 @@ export const TableCell = styled.td`
   input[type="checkbox"] {
     transform: scale(1.2);
   }
+
+  padding: 10px;
 
   .category {
     &.videogame {
@@ -95,19 +72,5 @@ export const Pagination = styled.div`
     &:hover {
       background: #333;
     }
-  }
-`;
-
-export const Profile = styled.div`
-  text-align: right;
-
-  span:first-child {
-    font-weight: bold;
-    display: block;
-  }
-
-  span:last-child {
-    font-size: 0.9rem;
-    color: #aaa;
   }
 `;

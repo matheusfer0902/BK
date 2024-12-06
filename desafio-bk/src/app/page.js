@@ -27,7 +27,7 @@ export default function App() {
       <GlobalStyles />
         <Header />
         <FilterBar />
-        <Medias />
+        <Medias medias={medias}/>
     </ThemeProvider>
   );
 }
