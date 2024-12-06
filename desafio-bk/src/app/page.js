@@ -3,18 +3,20 @@
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./styles/globalStyles";
 import theme from "./styles/theme";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import api from "./services/api";
 import Header from '@/app/components/header/header'
 import FilterBar from "./components/filterBar/filterBar";
+import Medias from "@/app/components/medias/medias"
 
 export default function App() {
+  const [medias, setMedias] = useState()
 
   useEffect(() => {
     async function loadData() {
       const {data} = await api.get('media')
 
-      console.log(data)
+      setMedias(data)
     }
 
     loadData()
@@ -23,8 +25,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Header />
-      <FilterBar />
+        <Header />
+        <FilterBar />
+        <Medias />
     </ThemeProvider>
   );
 }
