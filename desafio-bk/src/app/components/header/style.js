@@ -7,19 +7,25 @@ export const Container = styled.header`
   padding: 16px;
 `;
 
-export const Logo = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-`;
-
 export const UserProfile = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+`;
 
-  img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+export const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+
+  .username {
+    font-weight: 500;
+    color: #FAFAFA; 
+  }
+
+  .email {
+    font-size: 0.9rem;
+    color: gray; 
   }
 `;
+

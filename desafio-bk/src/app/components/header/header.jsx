@@ -1,14 +1,19 @@
 import React from "react";
-import { Container, Logo, UserProfile } from "./style";
-import BKlogo from '../../../../public/Vector.svg'
+import { Container, UserProfile, UserInfo } from "./style";
+import Image from "next/image";
+import BKlogo from "../../../../public/Vector.svg";
+import ProfileIMG from "../../../../public/userIMG.svg";
 
 const Header = () => {
   return (
     <Container>
-      <img src={BKlogo} alt="logo BK" />
+      <Image src={BKlogo} alt="logo BK" width={50} height={50} />
       <UserProfile>
-        <span>AbraaoDev</span>
-        <img src="/profile.jpg" alt="User Profile" />
+        <UserInfo>
+          <span className="username">AbraaoDev</span>
+          <span className="email">abraao.dev@gmail.com</span>
+        </UserInfo>
+        <Image src={ProfileIMG} alt="User Profile" width={50} height={50} />
       </UserProfile>
     </Container>
   );
