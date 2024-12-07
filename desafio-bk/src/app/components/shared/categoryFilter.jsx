@@ -5,18 +5,19 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: ${({ width }) => width || "100%"}; 
+  width: ${({ width }) => width || "100%"};
 `;
 
 const Select = styled.select`
-  padding: 8px 12px;
+  padding: 8px 12px; /* Ajuste no padding geral */
+  padding-left: 40px; /* Adicionado espaço suficiente para o ícone */
   border: 1px dotted #3f3f46;
   border-radius: 58px;
   background-color: #18181b;
-  color: #71717A;
+  color: #71717a;
   outline: none;
-  width: 100%;
-  
+  width: 130px;
+
   &:focus {
     border-color: #10b981;
   }
@@ -24,7 +25,7 @@ const Select = styled.select`
 
 const IconWrapper = styled.div`
   position: absolute;
-  left: 16px; 
+  left: 12px; /* Espaço interno alinhado ao padding-left ajustado */
   color: #71717a;
   pointer-events: none;
 `;

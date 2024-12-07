@@ -90,7 +90,7 @@ const MediaTable = ({ medias = [], categoryFilter = "" }) => {
                   </span>
                 </TableCell>
                 <TableCell>
-                <span className={`category ${media.category.toLowerCase()}`}>
+                  <span className={`category ${media.category.toLowerCase()}`}>
                     <span className="dot"></span>
                     {formatCategory(media.category)}
                   </span>
@@ -102,7 +102,7 @@ const MediaTable = ({ medias = [], categoryFilter = "" }) => {
       <Pagination>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
           <span>
-            Showing {indexOfFirstItem + 1} to {indexOfLastItem} of{" "}
+            Showing {Math.min(indexOfLastItem, filteredMedias.length)} of{" "}
             {filteredMedias.length} medias
           </span>
           <PaginationControls>
@@ -118,16 +118,28 @@ const MediaTable = ({ medias = [], categoryFilter = "" }) => {
               Page {currentPage} of {totalPages}
             </PageInfo>
             <PaginationControlsButton>
-              <button onClick={() => handlePageChange(1)}>
+              <button
+                onClick={() => handlePageChange(1)}
+                disabled={currentPage === 1}
+              >
                 <ChevronsLeft />
               </button>
-              <button onClick={() => handlePageChange(currentPage - 1)}>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
                 <ChevronLeft />
               </button>
-              <button onClick={() => handlePageChange(currentPage + 1)}>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
                 <ChevronRight />
               </button>
-              <button onClick={() => handlePageChange(totalPages)}>
+              <button
+                onClick={() => handlePageChange(totalPages)}
+                disabled={currentPage === totalPages}
+              >
                 <ChevronsRight />
               </button>
             </PaginationControlsButton>

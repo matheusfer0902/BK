@@ -161,9 +161,9 @@ export const PageInfo = styled.span`
 export const PaginationControlsButton = styled.div`
   display: flex;
   gap: 9px;
-  
+
   button {
-    display: flex; /* Para centralizar o ícone dentro do botão */
+    display: flex; 
     justify-content: center;
     align-items: center;
     background: #18181B;
@@ -181,8 +181,15 @@ export const PaginationControlsButton = styled.div`
       outline: none;
     }
 
+    &:disabled {
+      background: #18181B; 
+      color: #27272A; 
+      cursor: not-allowed; 
+      border: 1px solid #27272A; 
+    }
+
     svg {
-      width: 16px; /* Define o tamanho do ícone */
+      width: 16px; 
       height: 16px;
     }
   }
