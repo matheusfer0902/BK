@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { ChevronRight, ChevronsRight, ChevronsLeft, ChevronLeft } from 'lucide-react';
 import {
   Container,
   Table,
   TableRow,
   TableCell,
   Pagination,
+  PaginationControls,
+  SelectContainer,
+  PageInfo,
+  PaginationControlsButton,
 } from "./style";
 
-const MediaTable = ({ medias }) => {
+const MediaTable = ({ medias = [] }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
   const formatCategory = (category) => {
     const categoryMap = {
       literary_work: "Literary",
@@ -16,6 +24,32 @@ const MediaTable = ({ medias }) => {
       video_game: "Videogame",
     };
     return categoryMap[category] || category;
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${day}/${month}/${year}`;
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentItems = Array.isArray(medias) ? medias.slice(indexOfFirstItem, indexOfLastItem) : [];
+  const totalPages = Math.ceil(medias.length / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1);
   };
 
   return (
@@ -27,21 +61,29 @@ const MediaTable = ({ medias }) => {
               <input type="checkbox" />
             </TableCell>
             <TableCell>Media</TableCell>
-            <TableCell>Release date</TableCell>
-            <TableCell>Category</TableCell>
+            <TableCell style={{ textAlign: "left" }}>Release date</TableCell>
+            <TableCell style={{ textAlign: "left" }}>Category</TableCell>
           </TableRow>
         </thead>
         <tbody>
-          {Array.isArray(medias) &&
-            medias.map((media, index) => (
+          {Array.isArray(currentItems) &&
+            currentItems.map((media, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <input type="checkbox" />
                 </TableCell>
-                <TableCell>{media.title.default}</TableCell>
-                <TableCell>{media.releaseDate}</TableCell>
                 <TableCell>
+                  <div>
+                    {media.title.default}
+                    <span className="mediaId">{media.id}</span> 
+                  </div>
+                </TableCell>
+                <TableCell style={{ textAlign: "left" }}>
+                  <span className="releaseDate">{formatDate(media.releaseDate)}</span>
+                </TableCell>
+                <TableCell style={{ textAlign: "left" }}>
                   <span className={`category ${media.category.toLowerCase()}`}>
+                    <span className="dot"></span> 
                     {formatCategory(media.category)}
                   </span>
                 </TableCell>
@@ -50,13 +92,27 @@ const MediaTable = ({ medias }) => {
         </tbody>
       </Table>
       <Pagination>
-        <span>Showing 10 of 228 medias</span>
-        <div>
-          <button>{"<<"}</button>
-          <button>{"<"}</button>
-          <span>Page 1 of 11</span>
-          <button>{">"}</button>
-          <button>{">>"}</button>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+          <span>Showing {indexOfFirstItem + 1} to {indexOfLastItem} of {medias.length} medias</span>
+          <PaginationControls>
+              <SelectContainer>
+                <span>Rows per page</span>
+                <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                </select>
+              </SelectContainer>
+                <PageInfo>
+                  Page {currentPage} of {totalPages}
+                </PageInfo>
+                <PaginationControlsButton>
+                  <button onClick={() => handlePageChange(1)}><ChevronsLeft /></button>
+                  <button onClick={() => handlePageChange(currentPage - 1)}><ChevronLeft /></button>
+                  <button onClick={() => handlePageChange(currentPage + 1)}><ChevronRight /></button>
+                  <button onClick={() => handlePageChange(totalPages)}><ChevronsRight /></button>
+                </PaginationControlsButton>
+          </PaginationControls>
         </div>
       </Pagination>
     </Container>
