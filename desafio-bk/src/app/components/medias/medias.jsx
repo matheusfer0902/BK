@@ -7,7 +7,16 @@ import {
   Pagination,
 } from "./style";
 
-const MediaTable = ({medias}) => {
+const MediaTable = ({ medias }) => {
+  const formatCategory = (category) => {
+    const categoryMap = {
+      literary_work: "Literary",
+      movie: "Movie",
+      video: "Video",
+      video_game: "Videogame",
+    };
+    return categoryMap[category] || category;
+  };
 
   return (
     <Container>
@@ -23,20 +32,21 @@ const MediaTable = ({medias}) => {
           </TableRow>
         </thead>
         <tbody>
-          {Array.isArray(medias) && medias.map((media, index) => (
-            <TableRow key={index}>
-              <TableCell>
-                <input type="checkbox" />
-              </TableCell>
-              <TableCell>{media.title.default}</TableCell>
-              <TableCell>{media.releaseDate}</TableCell>
-              <TableCell>
-                <span className={`category ${media.category.toLowerCase()}`}>
-                  {media.category}
-                </span>
-              </TableCell>
-            </TableRow>
-          ))}
+          {Array.isArray(medias) &&
+            medias.map((media, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <input type="checkbox" />
+                </TableCell>
+                <TableCell>{media.title.default}</TableCell>
+                <TableCell>{media.releaseDate}</TableCell>
+                <TableCell>
+                  <span className={`category ${media.category.toLowerCase()}`}>
+                    {formatCategory(media.category)}
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
         </tbody>
       </Table>
       <Pagination>

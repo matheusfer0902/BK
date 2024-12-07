@@ -34,24 +34,30 @@ export const Table = styled.table`
 export const TableRow = styled.tr``;
 
 export const TableCell = styled.td`
-  input[type="checkbox"] {
+  input {
     transform: scale(1.2);
+    border: 4px solid #3F3F46;
+    border-radius: 8px; 
+    background-color: #09090B; 
+    color: #D4D4D8; 
+    padding: 5px; 
+    outline: none; 
   }
 
   padding: 10px;
 
   .category {
-    &.videogame {
-      color: #1db954;
+    &.video_game {
+      color: #0EA5E9;
     }
-    &.literary {
-      color: #ff6347;
+    &.literary_work {
+      color: #A855F7;
     }
     &.video {
-      color: #f39c12;
+      color: #F97316;
     }
     &.movie {
-      color: #9b59b6;
+      color: #EC4899;
     }
   }
 `;

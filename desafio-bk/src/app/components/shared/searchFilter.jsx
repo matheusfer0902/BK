@@ -1,25 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+`;
+
+const IconWrapper = styled.div`
+  position: absolute;
+  left: 12px; 
+  color: #71717A; 
+  pointer-events: none; 
+`;
+
 const Input = styled.input`
-  padding: 8px 12px;
-  border: 1px solid #52525b; /* Cor de borda */
-  border-radius: 4px;
-  background-color: #18181b; /* Fundo escuro */
+  padding: 8px 12px 8px 36px; 
+  border: 1px dotted #3F3F46; 
+  border-radius: 58px;
+  background-color: #18181b; 
   color: white;
   outline: none;
+  width: 100%;
 
   &::placeholder {
-    color: #a1a1aa; /* Placeholder */
+    color: #71717A; 
   }
 
   &:focus {
-    border-color: #16a34a; /* Verde no foco */
+    border-color: #10B981; 
   }
 `;
 
-const SearchFilter = ({ placeholder }) => {
-  return <Input type="text" placeholder={placeholder} />;
+const SearchFilter = ({ placeholder, Icon }) => {
+  return (
+    <Wrapper>
+      <IconWrapper>
+        {Icon}
+      </IconWrapper>
+      <Input type="text" placeholder={placeholder} />
+    </Wrapper>
+  );
 };
 
 export default SearchFilter;

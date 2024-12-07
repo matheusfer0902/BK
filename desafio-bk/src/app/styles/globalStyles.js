@@ -10,6 +10,7 @@ export default createGlobalStyle`
     font-weight: 500;
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
+    font-size: 14px;
   }
 
   a {

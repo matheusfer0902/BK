@@ -24,15 +24,15 @@ export const Filters = styled.div`
 `;
 
 export const UploadButton = styled.button`
-  background-color: #16a34a;
+  background-color: #10B981;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  color: white;
-  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: #022C22;
+  font-weight: 500;
   cursor: pointer;
 
   &:hover {
-    background-color: #15803d; /* Verde mais escuro */
+    background-color: #15803d; 
   }
 `;
