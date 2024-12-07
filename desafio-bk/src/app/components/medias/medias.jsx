@@ -16,14 +16,14 @@ const MediaTable = ({ medias = [], categoryFilter = "" }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const formatCategory = (category) => {
+  const formatCategory = (category = "") => {
     const categoryMap = {
       literary_work: "Literary",
       movie: "Movie",
       video: "Video",
       video_game: "Videogame",
     };
-    return categoryMap[category] || category;
+    return categoryMap[category.trim().toLowerCase()] || category;
   };
 
   const formatDate = (dateString) => {
@@ -67,8 +67,8 @@ const MediaTable = ({ medias = [], categoryFilter = "" }) => {
               <input type="checkbox" />
             </TableCell>
             <TableCell>Media</TableCell>
-            <TableCell style={{ textAlign: "left" }}>Release date</TableCell>
-            <TableCell style={{ textAlign: "left" }}>Category</TableCell>
+            <TableCell>Release date</TableCell>
+            <TableCell>Category</TableCell>
           </TableRow>
         </thead>
         <tbody>
@@ -84,13 +84,13 @@ const MediaTable = ({ medias = [], categoryFilter = "" }) => {
                     <span className="mediaId">{media.id}</span>
                   </div>
                 </TableCell>
-                <TableCell style={{ textAlign: "left" }}>
+                <TableCell>
                   <span className="releaseDate">
                     {formatDate(media.releaseDate)}
                   </span>
                 </TableCell>
-                <TableCell style={{ textAlign: "left" }}>
-                  <span className={`category ${media.category.toLowerCase()}`}>
+                <TableCell>
+                <span className={`category ${media.category.toLowerCase()}`}>
                     <span className="dot"></span>
                     {formatCategory(media.category)}
                   </span>

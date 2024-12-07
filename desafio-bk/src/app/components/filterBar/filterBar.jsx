@@ -5,7 +5,7 @@ import { Tags, Search } from "lucide-react";
 import CategoryFilter from "@/app/components/shared/categoryFilter";
 import SearchFilter from "../shared/searchFilter";
 
-const FilterBar = ({ onCategoryChange, onSearchChange }) => {
+const FilterBar = ({ onCategoryChange }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleUploadClick = () => {
@@ -24,13 +24,12 @@ const FilterBar = ({ onCategoryChange, onSearchChange }) => {
           <CategoryFilter
             onChange={(event) => onCategoryChange(event.target.value)}
             Icon={<Tags />}
-            width="130px"
+            width="108px"
           />
           <SearchFilter
             placeholder="Search uploads"
             Icon={<Search />}
-            width="370px"
-            onChange={(event) => onSearchChange(event.target.value)} // Passa o filtro de nome
+            width="374px"
           />
         </Filters>
         <UploadButton onClick={handleUploadClick}>+ Upload Media</UploadButton>

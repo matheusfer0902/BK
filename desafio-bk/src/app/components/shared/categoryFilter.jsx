@@ -34,7 +34,7 @@ const CategoryFilter = ({ onChange, Icon, width }) => {
     <Wrapper width={width}>
       <IconWrapper>{Icon}</IconWrapper>
       <Select onChange={onChange}>
-        <option value="">All Categories</option>
+        <option value="">Category</option>
         <option value="literary_work">Literary</option>
         <option value="movie">Movie</option>
         <option value="video_game">Videogame</option>

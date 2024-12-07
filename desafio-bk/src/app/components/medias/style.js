@@ -17,9 +17,9 @@ export const Table = styled.table`
     border-top: 2px solid #333;
   }
 
-  th, td {
+  th,
+  td {
     padding: 0.5rem;
-    text-align: left;
   }
 
   tbody tr {
@@ -29,7 +29,17 @@ export const Table = styled.table`
   tbody tr:hover {
     background: #1f1f1f;
   }
+
+  /* Usando grid para controle da largura das colunas */
+  thead tr,
+  tbody tr {
+    display: grid;
+    grid-template-columns: 5% 75% 10% 10%; /* Checkbox, Media, Release date, Category */
+    align-items: center;
+  }
 `;
+
+
 
 export const TableRow = styled.tr``;
 
