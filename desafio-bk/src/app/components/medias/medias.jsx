@@ -12,7 +12,7 @@ import {
   PaginationControlsButton,
 } from "./style";
 
-const MediaTable = ({ medias = [] }) => {
+const MediaTable = ({ medias = [], categoryFilter = "" }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
@@ -35,12 +35,6 @@ const MediaTable = ({ medias = [] }) => {
     return `${day}/${month}/${year}`;
   };
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-
-  const currentItems = Array.isArray(medias) ? medias.slice(indexOfFirstItem, indexOfLastItem) : [];
-  const totalPages = Math.ceil(medias.length / itemsPerPage);
-
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -51,6 +45,18 @@ const MediaTable = ({ medias = [] }) => {
     setItemsPerPage(Number(event.target.value));
     setCurrentPage(1);
   };
+
+  const filteredMedias = categoryFilter
+    ? medias.filter((media) => media.category === categoryFilter)
+    : medias;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentItems = Array.isArray(filteredMedias)
+    ? filteredMedias.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
+  const totalPages = Math.ceil(filteredMedias.length / itemsPerPage);
 
   return (
     <Container>
@@ -75,15 +81,17 @@ const MediaTable = ({ medias = [] }) => {
                 <TableCell>
                   <div>
                     {media.title.default}
-                    <span className="mediaId">{media.id}</span> 
+                    <span className="mediaId">{media.id}</span>
                   </div>
                 </TableCell>
                 <TableCell style={{ textAlign: "left" }}>
-                  <span className="releaseDate">{formatDate(media.releaseDate)}</span>
+                  <span className="releaseDate">
+                    {formatDate(media.releaseDate)}
+                  </span>
                 </TableCell>
                 <TableCell style={{ textAlign: "left" }}>
                   <span className={`category ${media.category.toLowerCase()}`}>
-                    <span className="dot"></span> 
+                    <span className="dot"></span>
                     {formatCategory(media.category)}
                   </span>
                 </TableCell>
@@ -93,25 +101,36 @@ const MediaTable = ({ medias = [] }) => {
       </Table>
       <Pagination>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
-          <span>Showing {indexOfFirstItem + 1} to {indexOfLastItem} of {medias.length} medias</span>
+          <span>
+            Showing {indexOfFirstItem + 1} to {indexOfLastItem} of{" "}
+            {filteredMedias.length} medias
+          </span>
           <PaginationControls>
-              <SelectContainer>
-                <span>Rows per page</span>
-                <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
-                  <option value={5}>5</option>
-                  <option value={10}>10</option>
-                  <option value={20}>20</option>
-                </select>
-              </SelectContainer>
-                <PageInfo>
-                  Page {currentPage} of {totalPages}
-                </PageInfo>
-                <PaginationControlsButton>
-                  <button onClick={() => handlePageChange(1)}><ChevronsLeft /></button>
-                  <button onClick={() => handlePageChange(currentPage - 1)}><ChevronLeft /></button>
-                  <button onClick={() => handlePageChange(currentPage + 1)}><ChevronRight /></button>
-                  <button onClick={() => handlePageChange(totalPages)}><ChevronsRight /></button>
-                </PaginationControlsButton>
+            <SelectContainer>
+              <span>Rows per page</span>
+              <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+              </select>
+            </SelectContainer>
+            <PageInfo>
+              Page {currentPage} of {totalPages}
+            </PageInfo>
+            <PaginationControlsButton>
+              <button onClick={() => handlePageChange(1)}>
+                <ChevronsLeft />
+              </button>
+              <button onClick={() => handlePageChange(currentPage - 1)}>
+                <ChevronLeft />
+              </button>
+              <button onClick={() => handlePageChange(currentPage + 1)}>
+                <ChevronRight />
+              </button>
+              <button onClick={() => handlePageChange(totalPages)}>
+                <ChevronsRight />
+              </button>
+            </PaginationControlsButton>
           </PaginationControls>
         </div>
       </Pagination>

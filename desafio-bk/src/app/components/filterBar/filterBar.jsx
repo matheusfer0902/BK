@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Container, Filters, UploadButton } from "./style";
-import SearchFilter from "@/app/components/shared/searchFilter";
 import UploadSidebar from "./UploadSidebar";
-import { Tags, Search } from 'lucide-react';
+import { Tags, Search } from "lucide-react";
+import CategoryFilter from "@/app/components/shared/categoryFilter";
+import SearchFilter from "../shared/searchFilter";
 
-const FilterBar = () => {
+const FilterBar = ({ onCategoryChange, onSearchChange }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleUploadClick = () => {
@@ -20,8 +21,17 @@ const FilterBar = () => {
       <h2>Media</h2>
       <div className="filters-section">
         <Filters>
-          <SearchFilter placeholder="Category" Icon={<Tags />} />
-          <SearchFilter placeholder="Search uploads" Icon={<Search />} />
+          <CategoryFilter
+            onChange={(event) => onCategoryChange(event.target.value)}
+            Icon={<Tags />}
+            width="130px"
+          />
+          <SearchFilter
+            placeholder="Search uploads"
+            Icon={<Search />}
+            width="370px"
+            onChange={(event) => onSearchChange(event.target.value)} // Passa o filtro de nome
+          />
         </Filters>
         <UploadButton onClick={handleUploadClick}>+ Upload Media</UploadButton>
       </div>

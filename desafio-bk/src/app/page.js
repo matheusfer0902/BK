@@ -22,12 +22,25 @@ export default function App() {
     loadData()
   }, [])
 
+  const [categoryFilter, setCategoryFilter] = useState("");
+
+  const handleCategoryChange = (category) => {
+    setCategoryFilter(category);
+  };
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (query) => {
+    setSearchQuery(query);
+  };
+
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
         <Header />
-        <FilterBar />
-        <Medias medias={medias}/>
+        <FilterBar onCategoryChange={handleCategoryChange} onSearchChange={handleSearchChange} />
+        <Medias medias={medias} categoryFilter={categoryFilter} searchQuery={searchQuery} />
     </ThemeProvider>
   );
 }

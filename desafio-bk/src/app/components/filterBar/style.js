@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 16px;
+  padding: 0 16px;
 
   h2 {
     color: #FAFAFA;
@@ -20,7 +20,8 @@ export const Container = styled.div`
 
 export const Filters = styled.div`
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
 `;
 
 export const UploadButton = styled.button`
