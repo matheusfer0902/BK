@@ -13,15 +13,31 @@ export const Container = styled.div`
 
   .filters-section {
     display: flex;
+    flex-wrap: wrap; 
     justify-content: space-between;
     align-items: center;
+    gap: 10px; 
   }
 `;
 
 export const Filters = styled.div`
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 10px;
+  flex-wrap: wrap; 
+  width: 100%; 
+
+  @media (max-width: 768px) {
+    flex-direction: row; 
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  
+  & > * {
+    flex: 1; 
+    min-width: 150px; 
+  }
 `;
 
 export const UploadButton = styled.button`
@@ -32,8 +48,15 @@ export const UploadButton = styled.button`
   color: #022C22;
   font-weight: 500;
   cursor: pointer;
+  width: 100%; 
+  text-align: center;
 
   &:hover {
-    background-color: #15803d; 
+    background-color: #15803d;
+  }
+
+  @media (min-width: 768px) {
+    width: auto; 
   }
 `;
+

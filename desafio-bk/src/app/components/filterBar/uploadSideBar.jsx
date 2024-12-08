@@ -8,11 +8,9 @@ import {
   ClearButton,
   TitleContainer,
   TextContainer,
-} from "./styleSideBar"; 
-import api from "@/app/services/api"; 
-import { FileArchive } from 'lucide-react';
-import { Check } from 'lucide-react';
-import { X } from 'lucide-react'; 
+} from "./styleSideBar";
+import api from "@/app/services/api";
+import { FileArchive, Check, X } from "lucide-react";
 
 const UploadSidebar = ({ onClose }) => {
   const [category, setCategory] = useState("");
@@ -50,11 +48,15 @@ const UploadSidebar = ({ onClose }) => {
 
   return (
     <SidebarContainer>
-      <CloseButton onClick={onClose}><X /></CloseButton>
+      <CloseButton onClick={onClose}>
+        <X />
+      </CloseButton>
       <TitleContainer>
-        <FileArchive size={24} color="#fff" /> 
-        <span><h2>Upload Media</h2></span>
-        <span>Put the best files for BK Beta, 🤘🏽.</span>
+        <FileArchive size={24} color="#fff" />
+        <TextContainer>
+          <h2>Upload Media</h2>
+          <span>Put the best files for BK Beta, 🤘🏽.</span>
+        </TextContainer>
       </TitleContainer>
       <Form onSubmit={handleFormSubmit}>
         <label>
@@ -62,13 +64,13 @@ const UploadSidebar = ({ onClose }) => {
           <Input
             type="text"
             value={category}
-            onChange={(e) => console.log(e.target.value) }
+            onChange={(e) => setCategory(e.target.value)}
             placeholder="Select category"
             required
           />
         </label>
         <label>
-          <span>Title</span>
+          <span className="label-title">Title</span>
           <Input
             type="text"
             value={title}
@@ -78,18 +80,21 @@ const UploadSidebar = ({ onClose }) => {
           />
         </label>
         <label>
-          <span>Data</span>
+          <span className="label-title">Data</span>
           <Input
             type="date"
             value={data}
             onChange={(e) => setData(e.target.value)}
-            placeholder="Type your data"
             required
           />
         </label>
         <div className="buttons-container">
-          <ClearButton type="button" onClick={clearInputs}>Clear All</ClearButton>
-          <SubmitButton type="submit"><Check /> Upload Media</SubmitButton>
+          <ClearButton type="button" onClick={clearInputs}>
+            Clear All
+          </ClearButton>
+          <SubmitButton type="submit">
+            <Check /> Upload Media
+          </SubmitButton>
         </div>
       </Form>
     </SidebarContainer>
