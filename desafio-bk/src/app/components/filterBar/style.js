@@ -29,7 +29,6 @@ export const Filters = styled.div`
   align-items: center;
   gap: 10px;
   flex-wrap: wrap; 
-  flex: 1; 
   width: 100%; 
 
   @media (min-width: 768px) {
