@@ -5,8 +5,12 @@ import {
   Form,
   Input,
   SubmitButton,
-} from "./styleSideBar";
+  ClearButton,
+  TitleContainer,
+  TextContainer,
+} from "./styleSideBar"; // Adicionamos novos componentes de estilo para os títulos
 import api from "@/app/services/api"; 
+import { FileArchive } from 'lucide-react'; // Importando o ícone
 
 const UploadSidebar = ({ onClose }) => {
   const [category, setCategory] = useState("");
@@ -33,15 +37,23 @@ const UploadSidebar = ({ onClose }) => {
       onClose();
     } catch (error) {
       console.error("Erro ao enviar a mídia:", error);
-      alert(`Erro ao enviar a mídia: ${error.response?.data?.message || "Verifique os dados enviados."}`);
     }
+  };
+
+  const clearInputs = () => {
+    setCategory("");
+    setTitle("");
+    setData("");
   };
 
   return (
     <SidebarContainer>
       <CloseButton onClick={onClose}>X</CloseButton>
-      <h2>Upload Media</h2>
-      <p>Put the best files for BK Beta. 👋</p>
+      <TitleContainer>
+        <FileArchive size={24} color="#fff" /> 
+        <h2>Upload Media</h2>
+        <p>Put the best files for BK Beta, 🤘🏽.</p>
+      </TitleContainer>
       <Form onSubmit={handleFormSubmit}>
         <label>
           Category:
@@ -73,7 +85,10 @@ const UploadSidebar = ({ onClose }) => {
             required
           />
         </label>
-        <SubmitButton type="submit">+ Upload Media</SubmitButton>
+        <div className="buttons-container">
+          <SubmitButton type="submit">+ Upload Media</SubmitButton>
+          <ClearButton type="button" onClick={clearInputs}>Clear</ClearButton>
+        </div>
       </Form>
     </SidebarContainer>
   );

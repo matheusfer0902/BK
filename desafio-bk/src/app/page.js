@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import api from "./services/api";
 import Header from '@/app/components/header/header'
 import FilterBar from "./components/filterBar/filterBar";
-import Medias from "@/app/components/medias/medias"
+import Medias from "@/app/components/medias/medias";
 
 export default function App() {
   const [medias, setMedias] = useState()
@@ -33,7 +33,6 @@ export default function App() {
   const handleSearchChange = (query) => {
     setSearchQuery(query);
   };
-
 
   return (
     <ThemeProvider theme={theme}>

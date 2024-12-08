@@ -21,7 +21,7 @@ export const Container = styled.div`
 export const Filters = styled.div`
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
 `;
 
 export const UploadButton = styled.button`

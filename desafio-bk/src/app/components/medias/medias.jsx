@@ -12,7 +12,7 @@ import {
   PaginationControlsButton,
 } from "./style";
 
-const MediaTable = ({ medias = [], categoryFilter = "" }) => {
+const MediaTable = ({ medias = [], categoryFilter = "", searchQuery="" }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
@@ -46,17 +46,21 @@ const MediaTable = ({ medias = [], categoryFilter = "" }) => {
     setCurrentPage(1);
   };
 
-  const filteredMedias = categoryFilter
-    ? medias.filter((media) => media.category === categoryFilter)
-    : medias;
+  const filteredMedias = medias.filter((media) => {
+    const matchesCategory = categoryFilter ? media.category === categoryFilter : true;
+    const matchesSearch = searchQuery
+      ? media.title.default.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
+    return matchesCategory && matchesSearch;
+  });
+  
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = Array.isArray(filteredMedias)
-    ? filteredMedias.slice(indexOfFirstItem, indexOfLastItem)
-    : [];
+  const currentItems = filteredMedias.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredMedias.length / itemsPerPage);
+
 
   return (
     <Container>

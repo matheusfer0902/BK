@@ -33,11 +33,15 @@ const Input = styled.input`
   }
 `;
 
-const SearchFilter = ({ placeholder, Icon, width }) => {
+const SearchFilter = ({ placeholder, Icon, width, onChange }) => {
   return (
     <Wrapper width={width}>
       <IconWrapper>{Icon}</IconWrapper>
-      <Input type="text" placeholder={placeholder} />
+      <Input
+        type="text"
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)} // Chama onChange do pai ao digitar
+      />
     </Wrapper>
   );
 };

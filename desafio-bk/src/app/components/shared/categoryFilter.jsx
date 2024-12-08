@@ -9,14 +9,14 @@ const Wrapper = styled.div`
 `;
 
 const Select = styled.select`
-  padding: 8px 12px; /* Ajuste no padding geral */
-  padding-left: 40px; /* Adicionado espaço suficiente para o ícone */
+  padding: 8px 12px; 
+  padding-left: 40px; 
   border: 1px dotted #3f3f46;
   border-radius: 58px;
   background-color: #18181b;
   color: #71717a;
   outline: none;
-  width: 130px;
+  width: 150px;
 
   &:focus {
     border-color: #10b981;
@@ -25,7 +25,7 @@ const Select = styled.select`
 
 const IconWrapper = styled.div`
   position: absolute;
-  left: 12px; /* Espaço interno alinhado ao padding-left ajustado */
+  left: 12px; 
   color: #71717a;
   pointer-events: none;
 `;

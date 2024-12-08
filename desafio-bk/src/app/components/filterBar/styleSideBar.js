@@ -37,6 +37,7 @@ export const Input = styled.input`
   border-radius: 5px;
   background: #333;
   color: #fff;
+  width: 100%; 
 `;
 
 export const SubmitButton = styled.button`
@@ -47,8 +48,34 @@ export const SubmitButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 10px; 
 
   &:hover {
     background: #00a853;
   }
 `;
+
+export const ClearButton = styled.button`
+  background: #ff4d4d;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background: #e60000;
+  }
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;  
+`;
+
+export const TextContainer = styled.div`
+  margin-bottom: 10px; 
+`;
+
