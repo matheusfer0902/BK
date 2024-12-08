@@ -6,10 +6,11 @@ export const SidebarContainer = styled.div`
   right: 0;
   width: 30%;
   height: 100%;
-  background-color: #1f1f1f;
+  background-color: #09090B;
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   z-index: 1000;
+  font-family: "Inter", sans-serif
 `;
 
 export const CloseButton = styled.button`
@@ -28,27 +29,32 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 15px;
   margin-top: 20px;
+
+  .label-title {
+    margin-bottom: 8px;
+  }
 `;
 
 export const Input = styled.input`
-  padding: 10px;
+  padding: 16px;
   font-size: 1rem;
-  border: 1px solid #444;
-  border-radius: 5px;
-  background: #333;
+  border: 1px solid #27272A;
+  border-radius: 8px;
+  background: #09090B;
   color: #fff;
   width: 100%; 
 `;
 
 export const SubmitButton = styled.button`
-  background: #00cc66;
-  color: #fff;
+  background: #2DD4BF;
+  color: #042F2E;
   font-size: 1rem;
-  padding: 10px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-left: 10px; 
+  margin-left: 10px;
+  height: 32px; 
 
   &:hover {
     background: #00a853;
@@ -56,16 +62,18 @@ export const SubmitButton = styled.button`
 `;
 
 export const ClearButton = styled.button`
-  background: #ff4d4d;
-  color: #fff;
+  background: #09090B;
+  color: #71717A;
   font-size: 1rem;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
+  padding: 8px 16px;
+  border: 1px solid #27272A;
+  border-radius: 6px;
   cursor: pointer;
+  height: 32px;
 
   &:hover {
-    background: #e60000;
+    background: #71717A;
+    color: #09090B;
   }
 `;
 

@@ -8,9 +8,11 @@ import {
   ClearButton,
   TitleContainer,
   TextContainer,
-} from "./styleSideBar"; // Adicionamos novos componentes de estilo para os títulos
+} from "./styleSideBar"; 
 import api from "@/app/services/api"; 
-import { FileArchive } from 'lucide-react'; // Importando o ícone
+import { FileArchive } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { X } from 'lucide-react'; 
 
 const UploadSidebar = ({ onClose }) => {
   const [category, setCategory] = useState("");
@@ -48,25 +50,25 @@ const UploadSidebar = ({ onClose }) => {
 
   return (
     <SidebarContainer>
-      <CloseButton onClick={onClose}>X</CloseButton>
+      <CloseButton onClick={onClose}><X /></CloseButton>
       <TitleContainer>
         <FileArchive size={24} color="#fff" /> 
-        <h2>Upload Media</h2>
-        <p>Put the best files for BK Beta, 🤘🏽.</p>
+        <span><h2>Upload Media</h2></span>
+        <span>Put the best files for BK Beta, 🤘🏽.</span>
       </TitleContainer>
       <Form onSubmit={handleFormSubmit}>
         <label>
-          Category:
+          <span className="label-title">Category</span>
           <Input
             type="text"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => console.log(e.target.value) }
             placeholder="Select category"
             required
           />
         </label>
         <label>
-          Title:
+          <span>Title</span>
           <Input
             type="text"
             value={title}
@@ -76,9 +78,9 @@ const UploadSidebar = ({ onClose }) => {
           />
         </label>
         <label>
-          Data:
+          <span>Data</span>
           <Input
-            type="text"
+            type="date"
             value={data}
             onChange={(e) => setData(e.target.value)}
             placeholder="Type your data"
@@ -86,8 +88,8 @@ const UploadSidebar = ({ onClose }) => {
           />
         </label>
         <div className="buttons-container">
-          <SubmitButton type="submit">+ Upload Media</SubmitButton>
-          <ClearButton type="button" onClick={clearInputs}>Clear</ClearButton>
+          <ClearButton type="button" onClick={clearInputs}>Clear All</ClearButton>
+          <SubmitButton type="submit"><Check /> Upload Media</SubmitButton>
         </div>
       </Form>
     </SidebarContainer>
