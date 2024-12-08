@@ -20,6 +20,7 @@ export const Table = styled.table`
   th,
   td {
     padding: 0.5rem;
+    text-align: left;
   }
 
   tbody tr {
@@ -30,16 +31,46 @@ export const Table = styled.table`
     background: #1f1f1f;
   }
 
-  /* Usando grid para controle da largura das colunas */
+  /* Layout para telas maiores */
   thead tr,
   tbody tr {
     display: grid;
-    grid-template-columns: 5% 75% 10% 10%; /* Checkbox, Media, Release date, Category */
+    grid-template-columns: 5% 75% 10% 10%; 
     align-items: center;
   }
+
+  /* Layout para telas menores */
+  @media (max-width: 768px) {
+    thead tr,
+    tbody tr {
+      grid-template-columns: 10% 60% 30%; /* Ajuste o layout para centralizar melhor */
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      display: none; /* Oculta a coluna categoria */
+    }
+  }
+
+  @media (max-width: 480px) {
+    thead tr,
+    tbody tr {
+      grid-template-columns: 20% 80%; /* Apenas checkbox e título */
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      white-space: nowrap; /* Evita quebra de linha no título */
+    }
+
+    th:nth-child(3),
+    td:nth-child(3),
+    th:nth-child(4),
+    td:nth-child(4) {
+      display: none; /* Oculta todas as colunas, exceto checkbox e título */
+    }
+  }
 `;
-
-
 
 export const TableRow = styled.tr``;
 
@@ -53,23 +84,23 @@ export const TableCell = styled.td`
 
   .mediaId {
     font-size: 12px;
-    color: #71717A; 
+    color: #71717A;
     margin-top: 4px;
   }
 
   input[type="checkbox"] {
-    transform: scale(1.2); 
-    appearance: none; 
+    transform: scale(1.2);
+    appearance: none;
     border: 1px solid #3F3F46;
-    border-radius: 4px; 
-    background-color: #09090B; 
-    width: 16px; 
-    height: 16px; 
+    border-radius: 4px;
+    background-color: #09090B;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
     display: inline-block;
 
     &:checked {
-      background-color: #022C22; 
+      background-color: #022C22;
       border-color: #10B981;
     }
   }
@@ -100,20 +131,30 @@ export const TableCell = styled.td`
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: currentColor; 
+      background-color: currentColor;
     }
   }
 `;
 
 export const Pagination = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
+  gap: 10px;
 
   span {
     color: #71717A;
     font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    span {
+      display: none; 
+    }
   }
 `;
 
@@ -122,14 +163,20 @@ export const PaginationControls = styled.div`
   align-items: center;
   gap: 15px;
   margin-left: auto;
-`;
 
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 0;
+    width: 100%;
+  }
+`;
 
 export const SelectContainer = styled.div`
   display: flex;
   align-items: center;
   margin-right: 20px;
-  
+
   span {
     margin-right: 8px;
     font-size: 14px;
@@ -150,6 +197,19 @@ export const SelectContainer = styled.div`
       border: 1px solid #18181B;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+
+    span {
+      margin-right: 5px;
+    }
+
+    select {
+      width: 100%;
+    }
+  }
 `;
 
 export const PageInfo = styled.span`
@@ -163,7 +223,7 @@ export const PaginationControlsButton = styled.div`
   gap: 9px;
 
   button {
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     background: #18181B;
@@ -182,15 +242,21 @@ export const PaginationControlsButton = styled.div`
     }
 
     &:disabled {
-      background: #18181B; 
-      color: #27272A; 
-      cursor: not-allowed; 
-      border: 1px solid #27272A; 
+      background: #18181B;
+      color: #27272A;
+      cursor: not-allowed;
+      border: 1px solid #27272A;
     }
 
     svg {
-      width: 16px; 
+      width: 16px;
       height: 16px;
     }
+  }
+
+  @media (max-width: 768px) {
+    gap: 5px;
+    width: 100%;
+    justify-content: center;
   }
 `;

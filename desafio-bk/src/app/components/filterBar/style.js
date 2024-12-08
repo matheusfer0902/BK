@@ -16,7 +16,11 @@ export const Container = styled.div`
     flex-wrap: wrap; 
     justify-content: space-between;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
+
+    @media (min-width: 768px) {
+      flex-wrap: nowrap; 
+    }
   }
 `;
 
@@ -25,15 +29,14 @@ export const Filters = styled.div`
   align-items: center;
   gap: 10px;
   flex-wrap: wrap; 
+  flex: 1; 
   width: 100%; 
 
-  @media (max-width: 768px) {
-    flex-direction: row; 
-    gap: 10px;
-    justify-content: space-between;
+  @media (min-width: 768px) {
+    flex-wrap: nowrap; 
+    gap: 16px;
   }
 
-  
   & > * {
     flex: 1; 
     min-width: 150px; 
@@ -43,12 +46,11 @@ export const Filters = styled.div`
 export const UploadButton = styled.button`
   background-color: #10B981;
   border: none;
-  padding: 4px 8px;
+  padding: 8px 16px;
   border-radius: 12px;
   color: #022C22;
   font-weight: 500;
   cursor: pointer;
-  width: 100%; 
   text-align: center;
 
   &:hover {
@@ -56,7 +58,6 @@ export const UploadButton = styled.button`
   }
 
   @media (min-width: 768px) {
-    width: auto; 
+    margin-left: auto; 
   }
 `;
-
